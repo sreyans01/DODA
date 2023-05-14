@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "186259744646",
+    "firebase_url": "https://discuss-on-drawings-default-rtdb.asia-southeast1.firebasedatabase.app",
+    "project_id": "discuss-on-drawings",
+    "storage_bucket": "discuss-on-drawings.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:186259744646:android:502d067674eeabed9dee07",
+        "android_client_info": {
+          "package_name": "com.sreyans.discussondrawings"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "186259744646-4moflrruu9e446ib9juufhapelvivg18.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.sreyans.discussondrawings",
+            "certificate_hash": "e3952ad54bd8a1fd39265018ff7b4893a5d1dee2"
+          }
+        },
+        {
+          "client_id": "186259744646-cbefcghpi2qddlat8ofcnuk70tvrilre.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB4UxK3KEWdjBUbFI4POaWiGsIRhtCnwkQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "186259744646-cbefcghpi2qddlat8ofcnuk70tvrilre.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

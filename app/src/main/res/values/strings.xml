@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">Discuss On Drawings</string>
+    <string name="title_of_drawing">Title of Drawing</string>
+    <string name="add_your_drawing">Add Your Drawing</string>
+    <string name="upload_drawing">Upload Drawing</string>
+
+    <string name="select_drawing">Please Select A Drawing To Continue</string>
+    <string name="title_cannot_be_empty">Title cannot be empty</string>
+    <string name="unable_to_fetch_drawings">"Unable to fetch drawings, please try again later."</string>
+</resources>
