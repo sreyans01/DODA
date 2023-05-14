@@ -1,6 +1,6 @@
 package com.sreyans.discussondrawings.activities
 
-import AllDrawingsAdapter
+import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
 import androidx.activity.viewModels
@@ -8,6 +8,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import com.sreyans.discussondrawings.R
+import com.sreyans.discussondrawings.adapter.AllDrawingsAdapter
 import com.sreyans.discussondrawings.databinding.ActivityAllDrawingsBinding
 import com.sreyans.discussondrawings.model.Drawing
 import com.sreyans.discussondrawings.viewmodel.DrawingsViewModel
@@ -25,6 +26,7 @@ class AllDrawingsActivity : AppCompatActivity() {
 
         initRecyclerView()
         getAllDrawings()
+        handleListeners()
     }
 
 
@@ -35,6 +37,7 @@ class AllDrawingsActivity : AppCompatActivity() {
                 for (drawing in allDrawings as ArrayList<Drawing>) {
                     drawingsList.add(drawing)
                 }
+                drawingsList.reverse()
                 adapter.notifyDataSetChanged()
             }
             viewModel.getAllDrawings().observe(this, mObserver)
@@ -52,6 +55,12 @@ class AllDrawingsActivity : AppCompatActivity() {
             binding.recyclerView.adapter = adapter
         } catch (e: Exception) {
             e.printStackTrace()
+        }
+    }
+
+    private fun handleListeners() {
+        binding.fab.setOnClickListener {
+            startActivity(Intent(this, AddDrawingsActivity::class.java))
         }
     }
 }

@@ -35,7 +35,7 @@ class DrawingsRepositoryImpl(
         imageUrl: String,
         markers: ArrayList<Marker>,
     ): MutableLiveData<Resource<String>> {
-        val sdf = SimpleDateFormat("dd MM yyyy  hh:mm aaa")
+        val sdf = SimpleDateFormat("dd MMM, yyyy - HH:mm")
         val currentDateAndTime: String = sdf.format(Date())
         val drawing = Drawing(imageUrl, title, currentDateAndTime, markers)
         var uploadDrawingResult: MutableLiveData<Resource<String>> = MutableLiveData()

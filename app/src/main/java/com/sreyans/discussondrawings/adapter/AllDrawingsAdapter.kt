@@ -1,3 +1,5 @@
+package com.sreyans.discussondrawings.adapter
+
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -8,9 +10,10 @@ import com.sreyans.discussondrawings.databinding.ItemDrawingViewholderBinding
 import com.sreyans.discussondrawings.model.Drawing
 import com.sreyans.discussondrawings.viewholder.ItemDrawingViewHolder
 
-class AllDrawingsAdapter(context: Context, drawings: ArrayList<Drawing>) : RecyclerView.Adapter<ItemDrawingViewHolder>() {
+class AllDrawingsAdapter(context: Context, drawings: ArrayList<Drawing>) :
+    RecyclerView.Adapter<ItemDrawingViewHolder>() {
     private val context: Context
-    private val drawings : ArrayList<Drawing>
+    private val drawings: ArrayList<Drawing>
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ItemDrawingViewHolder {
         val layoutInflater = LayoutInflater.from(parent.context)

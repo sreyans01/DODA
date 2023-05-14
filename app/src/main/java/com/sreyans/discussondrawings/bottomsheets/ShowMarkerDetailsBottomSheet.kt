@@ -4,6 +4,7 @@ import android.text.TextUtils
 import androidx.lifecycle.ViewModelProviders
 import com.sreyans.discussondrawings.R
 import com.sreyans.discussondrawings.databinding.BottomsheetAddMarkerBinding
+import com.sreyans.discussondrawings.databinding.ItemMarkerViewholderBinding
 import com.sreyans.discussondrawings.event.AddMarkerEvent
 import com.sreyans.discussondrawings.helper.BottomSheet
 import com.sreyans.discussondrawings.model.Marker
@@ -12,15 +13,15 @@ import org.greenrobot.eventbus.EventBus
 import java.text.SimpleDateFormat
 import java.util.*
 
-class AddMarkerBottomSheetDialog(val x: Float, val y: Float) :
-    BottomSheet<BottomsheetAddMarkerBinding, DrawingsViewModel>() {
+class ShowMarkerDetailsBottomSheet(val marker: Marker) :
+    BottomSheet<ItemMarkerViewholderBinding, DrawingsViewModel>() {
 
     override fun getBindingVariable(): Int {
         return 0
     }
 
     override fun getLayoutId(): Int {
-        return R.layout.bottomsheet_add_marker
+        return R.layout.item_marker_viewholder
     }
 
     override fun getViewModel(): DrawingsViewModel {
@@ -34,22 +35,15 @@ class AddMarkerBottomSheetDialog(val x: Float, val y: Float) :
     }
 
     override fun initView() {
-        binding.addMarker.setOnClickListener {
-            val sdf = SimpleDateFormat("dd MMM, yyyy - HH:mm")
-            val currentDateAndTime: String = sdf.format(Date())
-            if (!TextUtils.isEmpty(binding.title.text) && !TextUtils.isEmpty(binding.description.text)) {
-                val title = binding.title.text.toString()
-                val desc = binding.description.text.toString()
-                EventBus.getDefault()
-                    .post(AddMarkerEvent(Marker(this.x, this.y, title, desc, currentDateAndTime)))
-                dismissAllowingStateLoss()
-            }
-        }
+        binding.title.setText(this.marker.title)
+        binding.description.setText(this.marker.description)
+        binding.coordinates.setText("x: ${this.marker.x}, y: ${this.marker.y}")
+        binding.creationTime.setText(this.marker.createdOn)
     }
 
     override fun initData() {}
 
     companion object {
-        const val TAG = "AddMarkerBottomSheetDialog"
+        const val TAG = "ShowMarkerDetailsBottomSheet"
     }
 }
