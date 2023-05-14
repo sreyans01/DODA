@@ -19,5 +19,10 @@ class Constants {
         //Date Pattern
         val DATE_PATTERN_WITH_SECONDS = "dd MMM, yyyy - HH:mm:ss"
         val DATE_PATTERN_NORMAL = "dd MMM, yyyy - HH:mm"
+
+        val COORDINATES = "Coordinates"
+        val DESCRIPTION = "Description"
+        val CREATED = "Created"
+        val TITLE = "Title"
     }
 }

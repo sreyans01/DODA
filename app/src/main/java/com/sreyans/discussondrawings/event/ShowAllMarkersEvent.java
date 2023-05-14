@@ -3,17 +3,13 @@ package com.sreyans.discussondrawings.event;
 import com.sreyans.discussondrawings.model.Drawing;
 import com.sreyans.discussondrawings.model.Marker;
 
-public class UpdateMarkerEvent {
-    private Marker marker;
+import java.util.ArrayList;
+
+public class ShowAllMarkersEvent {
     private Drawing drawing;
 
-    public UpdateMarkerEvent(Marker marker, Drawing drawing) {
-        this.marker = marker;
+    public ShowAllMarkersEvent(Drawing drawing) {
         this.drawing = drawing;
-    }
-
-    public Marker getMarker() {
-        return marker;
     }
 
     public Drawing getDrawing() {

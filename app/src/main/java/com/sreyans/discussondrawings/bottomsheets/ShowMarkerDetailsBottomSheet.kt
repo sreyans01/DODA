@@ -7,6 +7,8 @@ import com.sreyans.discussondrawings.databinding.BottomsheetAddMarkerBinding
 import com.sreyans.discussondrawings.databinding.ItemMarkerViewholderBinding
 import com.sreyans.discussondrawings.event.AddMarkerEvent
 import com.sreyans.discussondrawings.helper.BottomSheet
+import com.sreyans.discussondrawings.helper.Constants
+import com.sreyans.discussondrawings.helper.Utils.toTimeAgo
 import com.sreyans.discussondrawings.model.Marker
 import com.sreyans.discussondrawings.viewmodel.DrawingsViewModel
 import org.greenrobot.eventbus.EventBus
@@ -35,10 +37,12 @@ class ShowMarkerDetailsBottomSheet(val marker: Marker) :
     }
 
     override fun initView() {
-        binding.title.setText(this.marker.title)
-        binding.description.setText(this.marker.description)
-        binding.coordinates.setText("x: ${this.marker.x}, y: ${this.marker.y}")
-        binding.creationTime.setText(this.marker.createdOn)
+        binding.title.setText(Constants.TITLE + " - " + marker.title)
+        val date = SimpleDateFormat(Constants.DATE_PATTERN_NORMAL).parse(marker.createdOn)
+        val timeString = date.time.toTimeAgo()
+        binding.creationTime.setText(Constants.CREATED + " - " + timeString)
+        binding.description.setText(Constants.DESCRIPTION + " - " + marker.description)
+        binding.coordinates.setText(Constants.COORDINATES + " - " + "x: ${marker.x}, y: ${marker.y}")
     }
 
     override fun initData() {}

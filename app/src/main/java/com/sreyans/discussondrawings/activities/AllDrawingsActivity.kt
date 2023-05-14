@@ -13,6 +13,7 @@ import com.sreyans.discussondrawings.R
 import com.sreyans.discussondrawings.adapter.AllDrawingsAdapter
 import com.sreyans.discussondrawings.databinding.ActivityAllDrawingsBinding
 import com.sreyans.discussondrawings.event.OnItemClickEvent
+import com.sreyans.discussondrawings.event.ShowAllMarkersEvent
 import com.sreyans.discussondrawings.helper.Constants
 import com.sreyans.discussondrawings.helper.UIUtils
 import com.sreyans.discussondrawings.model.Drawing
@@ -80,6 +81,16 @@ class AllDrawingsActivity : AppCompatActivity() {
         if (event != null && event.data is Drawing) {
             val drawing: Drawing = event.data as Drawing
             val intent = Intent(this@AllDrawingsActivity, ShowDrawingActivity::class.java)
+            intent.putExtra(Constants.KEY_DRAWINGS, drawing)
+            startActivity(intent)
+        }
+    }
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    fun onShowAllMarkersEvent(event: ShowAllMarkersEvent) {
+        if (event != null) {
+            val drawing: Drawing = event.drawing
+            val intent = Intent(this@AllDrawingsActivity, AllMarkersActivity::class.java)
             intent.putExtra(Constants.KEY_DRAWINGS, drawing)
             startActivity(intent)
         }

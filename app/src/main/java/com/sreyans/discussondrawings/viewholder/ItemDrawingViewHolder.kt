@@ -11,6 +11,7 @@ import com.bumptech.glide.request.RequestOptions
 import com.sreyans.discussondrawings.R
 import com.sreyans.discussondrawings.databinding.ItemDrawingViewholderBinding
 import com.sreyans.discussondrawings.event.OnItemClickEvent
+import com.sreyans.discussondrawings.event.ShowAllMarkersEvent
 import com.sreyans.discussondrawings.helper.Constants
 import com.sreyans.discussondrawings.helper.Utils.toTimeAgo
 import com.sreyans.discussondrawings.model.Drawing
@@ -25,6 +26,9 @@ class ItemDrawingViewHolder(binding: ItemDrawingViewholderBinding) : RecyclerVie
     fun onBind(context: Context, drawing: Drawing) {
         binding.parent.setOnClickListener {
             EventBus.getDefault().post(OnItemClickEvent(drawing))
+        }
+        binding.viewAllMarkersBtn.setOnClickListener {
+            EventBus.getDefault().post(ShowAllMarkersEvent(drawing))
         }
         try {
             // Circular Progress Drawable to show while Glide loads image
