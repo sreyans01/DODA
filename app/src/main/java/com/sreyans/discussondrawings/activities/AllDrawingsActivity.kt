@@ -7,11 +7,18 @@ import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
+import com.google.firebase.FirebaseApp
+import com.google.firebase.auth.FirebaseAuth
 import com.sreyans.discussondrawings.R
 import com.sreyans.discussondrawings.adapter.AllDrawingsAdapter
 import com.sreyans.discussondrawings.databinding.ActivityAllDrawingsBinding
+import com.sreyans.discussondrawings.event.OnItemClickEvent
+import com.sreyans.discussondrawings.helper.Constants
 import com.sreyans.discussondrawings.model.Drawing
 import com.sreyans.discussondrawings.viewmodel.DrawingsViewModel
+import org.greenrobot.eventbus.EventBus
+import org.greenrobot.eventbus.Subscribe
+import org.greenrobot.eventbus.ThreadMode
 
 class AllDrawingsActivity : AppCompatActivity() {
 
@@ -22,6 +29,11 @@ class AllDrawingsActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        FirebaseApp.initializeApp(this)
+        FirebaseAuth.getInstance().signInAnonymously()
+        if (!EventBus.getDefault().isRegistered(this)) {
+            EventBus.getDefault().register(this)
+        }
         binding = DataBindingUtil.setContentView(this, R.layout.activity_all_drawings)
 
         initRecyclerView()
@@ -62,5 +74,20 @@ class AllDrawingsActivity : AppCompatActivity() {
         binding.fab.setOnClickListener {
             startActivity(Intent(this, AddDrawingsActivity::class.java))
         }
+    }
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    fun onItemClickEvent(event: OnItemClickEvent) {
+        if (event != null && event.data is Drawing) {
+            val drawing: Drawing = event.data as Drawing
+            val intent = Intent(this@AllDrawingsActivity, ShowDrawingActivity::class.java)
+            intent.putExtra(Constants.KEY_DRAWINGS, drawing)
+            startActivity(intent)
+        }
+    }
+
+    override fun onDestroy() {
+        EventBus.getDefault().unregister(this)
+        super.onDestroy()
     }
 }

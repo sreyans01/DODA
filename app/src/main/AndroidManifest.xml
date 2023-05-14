@@ -26,6 +26,12 @@
 
         </activity>
         <activity
+            android:name=".activities.ShowDrawingActivity"
+            android:exported="false"
+            android:label="Drawing Profile Activity">
+
+        </activity>
+        <activity
             android:name=".activities.AllDrawingsActivity"
             android:exported="true">
             <intent-filter>

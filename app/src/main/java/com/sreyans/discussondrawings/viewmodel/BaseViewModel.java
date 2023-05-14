@@ -1,4 +1,4 @@
-package com.sreyans.discussondrawings.helper;
+package com.sreyans.discussondrawings.viewmodel;
 
 import androidx.lifecycle.ViewModel;
 

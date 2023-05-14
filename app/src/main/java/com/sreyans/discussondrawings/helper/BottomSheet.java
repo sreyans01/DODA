@@ -13,6 +13,7 @@ import androidx.databinding.DataBindingUtil;
 import androidx.databinding.ViewDataBinding;
 
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
+import com.sreyans.discussondrawings.viewmodel.BaseViewModel;
 
 import javax.inject.Inject;
 

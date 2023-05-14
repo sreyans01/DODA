@@ -1,15 +1,15 @@
 package com.sreyans.discussondrawings.repository
 
-import androidx.lifecycle.LiveDataReactiveStreams
 import android.net.Uri
 import androidx.lifecycle.LiveData
-import android.util.Log
+import androidx.lifecycle.LiveDataReactiveStreams
 import androidx.lifecycle.MutableLiveData
 import com.android.autelsdk.util.Resource
 import com.google.firebase.database.*
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
 import com.sreyans.discussondrawings.helper.Constants
+import com.sreyans.discussondrawings.helper.Utils
 import com.sreyans.discussondrawings.model.Drawing
 import com.sreyans.discussondrawings.model.Marker
 import io.reactivex.BackpressureStrategy
@@ -18,7 +18,6 @@ import io.reactivex.FlowableEmitter
 import io.reactivex.schedulers.Schedulers
 import java.text.SimpleDateFormat
 import java.util.*
-import kotlin.collections.ArrayList
 
 class DrawingsRepositoryImpl(
     storageReference: StorageReference = FirebaseStorage.getInstance().reference.child(Constants.KEY_DRAWINGS),
@@ -35,22 +34,41 @@ class DrawingsRepositoryImpl(
         imageUrl: String,
         markers: ArrayList<Marker>,
     ): MutableLiveData<Resource<String>> {
-        val sdf = SimpleDateFormat("dd MMM, yyyy - HH:mm")
+        val sdf = SimpleDateFormat("dd MMM, yyyy - HH:mm:ss")
         val currentDateAndTime: String = sdf.format(Date())
         val drawing = Drawing(imageUrl, title, currentDateAndTime, markers)
         var uploadDrawingResult: MutableLiveData<Resource<String>> = MutableLiveData()
-        val uploadId = databaseReference.child(Constants.KEY_DRAWINGS).push().key
+        val uploadId = drawing.createdOn
         if (uploadId == null) {
-            Log.i("KKKKKKK", "null id")
             uploadDrawingResult.postValue(Resource.error(Constants.UNKNOWN_ERROR, ""))
         }
         else {
-            Log.i("KKKKKKK", "id is there!")
             databaseReference.child(Constants.KEY_DRAWINGS).child(uploadId).setValue(drawing)
                 .addOnSuccessListener {
                     uploadDrawingResult.postValue(Resource.success("", Constants.SUCCESS))
                 }.addOnFailureListener { e: Exception ->
-                    uploadDrawingResult.postValue(Resource.error("Error : " + e.toString(), ""))
+                    uploadDrawingResult.postValue(Resource.error(e.toString(), ""))
+                }.addOnCanceledListener {
+                    uploadDrawingResult.postValue(Resource.error(Constants.OPERATION_CANCELLED, ""))
+                }
+        }
+        return uploadDrawingResult
+    }
+
+    override suspend fun updateDrawing(
+        drawing: Drawing
+    ): MutableLiveData<Resource<String>> {
+        val uploadId = drawing.createdOn
+        var uploadDrawingResult: MutableLiveData<Resource<String>> = MutableLiveData()
+        if (uploadId == null) {
+            uploadDrawingResult.postValue(Resource.error(Constants.UNKNOWN_ERROR, ""))
+        }
+        else {
+            databaseReference.child(Constants.KEY_DRAWINGS).child(uploadId).setValue(drawing)
+                .addOnSuccessListener {
+                    uploadDrawingResult.postValue(Resource.success("", Constants.SUCCESS))
+                }.addOnFailureListener { e: Exception ->
+                    uploadDrawingResult.postValue(Resource.error(e.toString(), ""))
                 }.addOnCanceledListener {
                     uploadDrawingResult.postValue(Resource.error(Constants.OPERATION_CANCELLED, ""))
                 }
@@ -60,8 +78,6 @@ class DrawingsRepositoryImpl(
 
     override suspend fun getDrawingImageUrl(selectedImageUri: Uri): MutableLiveData<Resource<String>> {
         var getDrawingImageUrlResult: MutableLiveData<Resource<String>> = MutableLiveData()
-        val sdf = SimpleDateFormat("dd MM yyyy  hh:mm aaa")
-        val currentDateAndTime: String = sdf.format(Date())
         val imageName = System.currentTimeMillis().toString() + " uploadedDrawing"
         val fileRef = storageReference.child(imageName)
         fileRef.putFile(selectedImageUri).addOnSuccessListener {
@@ -92,11 +108,6 @@ class DrawingsRepositoryImpl(
                             val drawing: Drawing? = drawingSnapshots.getValue(Drawing::class.java)
                             drawing?.let {
                                 drawingsList.add(it)
-                            }
-                            //TODO:(Sreyans) Check here
-                            try {
-
-                            } catch (e: Exception) {
                             }
                         }
                         emitter.onNext(drawingsList)

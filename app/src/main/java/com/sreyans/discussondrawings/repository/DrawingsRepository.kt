@@ -11,6 +11,8 @@ interface DrawingsRepository {
 
     suspend fun uploadDrawing(title: String, imageUrl: String, markers: ArrayList<Marker>) : MutableLiveData<Resource<String>>
 
+    suspend fun updateDrawing(drawing: Drawing) : MutableLiveData<Resource<String>>
+
     suspend fun getDrawingImageUrl(selectedImageUri: Uri) :  MutableLiveData<Resource<String>>
 
     fun getAllDrawings() : LiveData<ArrayList<Drawing>>

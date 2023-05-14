@@ -15,4 +15,15 @@ object Utils {
         })
     }
 
+    fun getUploadIdFromDate(date: String): String {
+        var uploadId = date
+        uploadId.replace(",","")
+        uploadId.replace(":","")
+        uploadId.replace("/","")
+        uploadId.replace(" ","")
+        uploadId.replace("-","")
+        return  uploadId
+
+    }
+
 }
