@@ -35,7 +35,8 @@ public abstract class BottomSheet<T extends ViewDataBinding, V extends BaseViewM
     /**
      * @return layout resource id
      */
-    public abstract @LayoutRes int getLayoutId();
+    public abstract @LayoutRes
+    int getLayoutId();
 
     /**
      * Override for set view model

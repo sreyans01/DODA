@@ -20,7 +20,7 @@ import com.sreyans.discussondrawings.R;
 
 public class UIUtils {
 
-    public static void  showBottomSheet(FragmentActivity activity, BottomSheet bottomSheet) {
+    public static void showBottomSheet(FragmentActivity activity, BottomSheet bottomSheet) {
         showBottomSheet(activity, bottomSheet, null);
     }
 

@@ -3,7 +3,6 @@ package com.sreyans.discussondrawings.helper
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.Observer
-import java.util.*
 
 object Utils {
 

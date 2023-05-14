@@ -67,7 +67,7 @@ class ShowDrawingActivity : AppCompatActivity() {
         else
             viewModel.markers = ArrayList()
 
-        for(marker in viewModel.markers) {
+        for (marker in viewModel.markers) {
             addMarkersToDrawing(marker.x, marker.y)
         }
 
@@ -77,12 +77,14 @@ class ShowDrawingActivity : AppCompatActivity() {
     fun handleListeners() {
 
 
-
         binding.updateDrawingBtn.setOnClickListener {
             if (!TextUtils.isEmpty(binding.title.text)) {
                 val title = binding.title.text.toString()
                 lifecycleScope.launch {
-                    viewModel.updateDrawing(Drawing(drawing.drawingImageUrl, title, drawing.createdOn, drawing.markers))
+                    viewModel.updateDrawing(Drawing(drawing.drawingImageUrl,
+                        title,
+                        drawing.createdOn,
+                        drawing.markers))
                         .observeOnce(this@ShowDrawingActivity, { msg ->
                             when (msg.status) {
                                 Status.SUCCESS -> {
@@ -110,7 +112,7 @@ class ShowDrawingActivity : AppCompatActivity() {
                         val y = event.y
                         if (firstTouch && (System.currentTimeMillis() - time) <= 300) {
                             firstTouch = false;
-                            addMarkersToDrawing(x,y)
+                            addMarkersToDrawing(x, y)
                             val addMarkerBottomSheet = AddMarkerBottomSheetDialog(x, y)
                             addMarkerBottomSheet.isCancelable = false
                             UIUtils.showBottomSheet(this@ShowDrawingActivity, addMarkerBottomSheet)
@@ -126,7 +128,6 @@ class ShowDrawingActivity : AppCompatActivity() {
                 return v?.onTouchEvent(event) ?: true
             }
         })
-
 
 
     }
@@ -187,13 +188,13 @@ class ShowDrawingActivity : AppCompatActivity() {
         image.setOnClickListener {
             for (marker in drawing.markers) {
                 if (marker.x == x && marker.y == y) {
-                    UIUtils.showBottomSheet(this@ShowDrawingActivity, ShowMarkerDetailsBottomSheet(marker))
+                    UIUtils.showBottomSheet(this@ShowDrawingActivity,
+                        ShowMarkerDetailsBottomSheet(marker))
                     break;
                 }
             }
         }
     }
-
 
 
 }

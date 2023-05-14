@@ -2,7 +2,6 @@ package com.sreyans.discussondrawings.viewholder
 
 import android.content.Context
 import android.graphics.Color
-import android.widget.Toast
 import androidx.lifecycle.LifecycleOwner
 import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.CircularProgressDrawable
@@ -17,9 +16,9 @@ import com.sreyans.discussondrawings.helper.Utils.toTimeAgo
 import com.sreyans.discussondrawings.model.Drawing
 import org.greenrobot.eventbus.EventBus
 import java.text.SimpleDateFormat
-import java.util.*
 
-class ItemDrawingViewHolder(binding: ItemDrawingViewholderBinding) : RecyclerView.ViewHolder(binding.root) {
+class ItemDrawingViewHolder(binding: ItemDrawingViewholderBinding) :
+    RecyclerView.ViewHolder(binding.root) {
     var binding: ItemDrawingViewholderBinding
     private val context: Context? = null
 

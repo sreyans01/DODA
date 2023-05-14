@@ -11,7 +11,8 @@ import com.sreyans.discussondrawings.model.Marker
 import org.greenrobot.eventbus.EventBus
 import java.text.SimpleDateFormat
 
-class ItemMarkerViewHolder(binding: ItemMarkerViewholderBinding) : RecyclerView.ViewHolder(binding.root) {
+class ItemMarkerViewHolder(binding: ItemMarkerViewholderBinding) :
+    RecyclerView.ViewHolder(binding.root) {
     var binding: ItemMarkerViewholderBinding
     private val context: Context? = null
 

@@ -1,19 +1,14 @@
 package com.sreyans.discussondrawings.bottomsheets
 
-import android.text.TextUtils
 import androidx.lifecycle.ViewModelProviders
 import com.sreyans.discussondrawings.R
-import com.sreyans.discussondrawings.databinding.BottomsheetAddMarkerBinding
 import com.sreyans.discussondrawings.databinding.ItemMarkerViewholderBinding
-import com.sreyans.discussondrawings.event.AddMarkerEvent
 import com.sreyans.discussondrawings.helper.BottomSheet
 import com.sreyans.discussondrawings.helper.Constants
 import com.sreyans.discussondrawings.helper.Utils.toTimeAgo
 import com.sreyans.discussondrawings.model.Marker
 import com.sreyans.discussondrawings.viewmodel.DrawingsViewModel
-import org.greenrobot.eventbus.EventBus
 import java.text.SimpleDateFormat
-import java.util.*
 
 class ShowMarkerDetailsBottomSheet(val marker: Marker) :
     BottomSheet<ItemMarkerViewholderBinding, DrawingsViewModel>() {

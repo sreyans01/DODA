@@ -1,7 +1,5 @@
 package com.sreyans.discussondrawings.event;
 
-import com.sreyans.discussondrawings.model.Marker;
-
 public class OnItemClickEvent {
     private Object data;
 

@@ -7,7 +7,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.FrameLayout
 import android.widget.ImageView
-import android.widget.Toast
 import androidx.activity.result.PickVisualMediaRequest
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
@@ -134,7 +133,7 @@ class AddDrawingsActivity : AppCompatActivity() {
                         val y = event.y
                         if (firstTouch && (System.currentTimeMillis() - time) <= 300) {
                             firstTouch = false;
-                            addMarkersToDrawing(x,y)
+                            addMarkersToDrawing(x, y)
                             val addMarkerBottomSheet = AddMarkerBottomSheetDialog(x, y)
                             //addMarkerBottomSheet.isCancelable = false
                             UIUtils.showBottomSheet(this@AddDrawingsActivity, addMarkerBottomSheet)
@@ -192,6 +191,7 @@ class AddDrawingsActivity : AppCompatActivity() {
         EventBus.getDefault().unregister(this)
         super.onDestroy()
     }
+
     private fun addMarkersToDrawing(x: Float, y: Float) {
         var image = ImageView(this@AddDrawingsActivity)
         image.layoutParams = ViewGroup.LayoutParams(20, 20)
@@ -212,7 +212,8 @@ class AddDrawingsActivity : AppCompatActivity() {
         image.setOnClickListener {
             for (marker in markers) {
                 if (marker.x == x && marker.y == y) {
-                    UIUtils.showBottomSheet(this@AddDrawingsActivity, ShowMarkerDetailsBottomSheet(marker))
+                    UIUtils.showBottomSheet(this@AddDrawingsActivity,
+                        ShowMarkerDetailsBottomSheet(marker))
                     break;
                 }
             }

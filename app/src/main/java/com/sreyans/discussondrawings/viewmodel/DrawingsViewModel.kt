@@ -24,7 +24,7 @@ class DrawingsViewModel() : BaseViewModel() {
     }
 
     suspend fun updateDrawing(
-        drawing: Drawing
+        drawing: Drawing,
     ): MutableLiveData<Resource<String>> {
         return repository.updateDrawing(drawing)
     }
