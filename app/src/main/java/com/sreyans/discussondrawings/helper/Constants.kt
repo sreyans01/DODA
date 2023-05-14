@@ -15,5 +15,9 @@ class Constants {
         //Error Strings
         val UNKNOWN_ERROR = "Unknown Error"
         val OPERATION_CANCELLED = "Operation Cancelled"
+
+        //Date Pattern
+        val DATE_PATTERN_WITH_SECONDS = "dd MMM, yyyy - HH:mm:ss"
+        val DATE_PATTERN_NORMAL = "dd MMM, yyyy - HH:mm"
     }
 }

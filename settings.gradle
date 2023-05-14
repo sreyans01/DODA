@@ -2,7 +2,9 @@ pluginManagement {
     repositories {
         gradlePluginPortal()
         google()
-        maven { url='https://jitpack.io'}
+        maven {
+            url='https://jitpack.io'
+        }
         mavenCentral()
     }
 }
@@ -14,7 +16,9 @@ dependencyResolutionManagement {
         maven {
             url "https://maven.google.com"
         }
-        maven { url='https://jitpack.io'}
+        maven {
+            url='https://jitpack.io'
+        }
     }
 }
 rootProject.name = "Discuss On Drawings"

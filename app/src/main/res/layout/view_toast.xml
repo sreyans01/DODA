@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TextView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/custom_toast_container"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/toast_rounded_bg"
+    android:elevation="2dp"
+    android:paddingLeft="24dp"
+    android:paddingTop="8dp"
+    android:paddingRight="24dp"
+    android:paddingBottom="8dp"
+    android:textColor="@color/white"
+    android:textSize="14sp"
+    tools:text="Error fetching content" />

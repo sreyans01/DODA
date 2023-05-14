@@ -11,8 +11,12 @@ import com.bumptech.glide.request.RequestOptions
 import com.sreyans.discussondrawings.R
 import com.sreyans.discussondrawings.databinding.ItemDrawingViewholderBinding
 import com.sreyans.discussondrawings.event.OnItemClickEvent
+import com.sreyans.discussondrawings.helper.Constants
+import com.sreyans.discussondrawings.helper.Utils.toTimeAgo
 import com.sreyans.discussondrawings.model.Drawing
 import org.greenrobot.eventbus.EventBus
+import java.text.SimpleDateFormat
+import java.util.*
 
 class ItemDrawingViewHolder(binding: ItemDrawingViewholderBinding) : RecyclerView.ViewHolder(binding.root) {
     var binding: ItemDrawingViewholderBinding
@@ -44,7 +48,9 @@ class ItemDrawingViewHolder(binding: ItemDrawingViewholderBinding) : RecyclerVie
             e.printStackTrace()
         }
         binding.title.setText(drawing.title)
-        binding.creationTime.setText(drawing.createdOn)
+        val date = SimpleDateFormat(Constants.DATE_PATTERN_WITH_SECONDS).parse(drawing.createdOn)
+        val timeString = date.time.toTimeAgo()
+        binding.creationTime.setText(timeString)
         binding.markersInfo.setText(drawing.markers.size.toString())
     }
 

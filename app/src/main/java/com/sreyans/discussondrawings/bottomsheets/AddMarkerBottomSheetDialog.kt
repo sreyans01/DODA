@@ -6,6 +6,7 @@ import com.sreyans.discussondrawings.R
 import com.sreyans.discussondrawings.databinding.BottomsheetAddMarkerBinding
 import com.sreyans.discussondrawings.event.AddMarkerEvent
 import com.sreyans.discussondrawings.helper.BottomSheet
+import com.sreyans.discussondrawings.helper.Constants
 import com.sreyans.discussondrawings.model.Marker
 import com.sreyans.discussondrawings.viewmodel.DrawingsViewModel
 import org.greenrobot.eventbus.EventBus
@@ -35,7 +36,7 @@ class AddMarkerBottomSheetDialog(val x: Float, val y: Float) :
 
     override fun initView() {
         binding.addMarker.setOnClickListener {
-            val sdf = SimpleDateFormat("dd MMM, yyyy - HH:mm")
+            val sdf = SimpleDateFormat(Constants.DATE_PATTERN_NORMAL)
             val currentDateAndTime: String = sdf.format(Date())
             if (!TextUtils.isEmpty(binding.title.text) && !TextUtils.isEmpty(binding.description.text)) {
                 val title = binding.title.text.toString()

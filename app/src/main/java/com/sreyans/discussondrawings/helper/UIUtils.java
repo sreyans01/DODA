@@ -1,14 +1,22 @@
 package com.sreyans.discussondrawings.helper;
 
+import android.app.Activity;
 import android.content.res.Resources;
 import android.os.Bundle;
+import android.view.Gravity;
+import android.view.LayoutInflater;
+import android.widget.TextView;
+import android.widget.Toast;
 
+import androidx.annotation.StringRes;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
+
+import com.sreyans.discussondrawings.R;
 
 public class UIUtils {
 
@@ -101,6 +109,31 @@ public class UIUtils {
         }
     }
 
-    public static void showToast(String message) {}
+    public static void showToast(Activity activity, String msg, int duration) {
+        if (activity != null) {
+            activity.runOnUiThread(() -> {
+                LayoutInflater inflater = LayoutInflater.from(activity);
+                TextView layout = (TextView) inflater.inflate(R.layout.view_toast, activity.findViewById(R.id.custom_toast_container));
+
+                layout.setText(msg);
+
+                Toast toast = new Toast(activity);
+                toast.setGravity(Gravity.BOTTOM, 0, 200);
+                toast.setDuration(duration);
+                toast.setView(layout);
+                toast.show();
+            });
+        }
+    }
+
+    public static void showToast(Activity activity, String msg) {
+        showToast(activity, msg, Toast.LENGTH_SHORT);
+    }
+
+    public static void showToast(Activity activity, @StringRes int stringRes) {
+        if (activity != null) {
+            showToast(activity, activity.getString(stringRes));
+        }
+    }
 
 }

@@ -47,12 +47,6 @@ dependencies {
     //Inject
     implementation "javax.inject:javax.inject:${rootProject.javaxInjectVersion}"
 
-    // Room components
-    implementation "androidx.room:room-runtime:2.1.0-alpha04"
-    kapt "androidx.room:room-compiler:$rootProject.roomVersion"
-    implementation "androidx.room:room-coroutines:$rootProject.roomVersion"
-    androidTestImplementation "androidx.room:room-testing:$rootProject.roomVersion"
-
     //Firebase
     implementation 'com.google.firebase:firebase-storage:20.0.0'
     implementation 'com.google.firebase:firebase-auth:21.0.1'
@@ -87,6 +81,9 @@ dependencies {
 
     // Crop Image
     implementation("com.vanniktech:android-image-cropper:4.5.0")
+    //TouchImageView
+    implementation 'it.sephiroth.android.library.imagezoom:imagezoom:2.3.0'
+
 
     //Event Bus
     implementation("org.greenrobot:eventbus:3.3.1")

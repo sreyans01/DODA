@@ -14,6 +14,7 @@ import com.sreyans.discussondrawings.adapter.AllDrawingsAdapter
 import com.sreyans.discussondrawings.databinding.ActivityAllDrawingsBinding
 import com.sreyans.discussondrawings.event.OnItemClickEvent
 import com.sreyans.discussondrawings.helper.Constants
+import com.sreyans.discussondrawings.helper.UIUtils
 import com.sreyans.discussondrawings.model.Drawing
 import com.sreyans.discussondrawings.viewmodel.DrawingsViewModel
 import org.greenrobot.eventbus.EventBus
@@ -55,9 +56,7 @@ class AllDrawingsActivity : AppCompatActivity() {
             viewModel.getAllDrawings().observe(this, mObserver)
         } catch (e: Exception) {
             e.printStackTrace()
-            Toast.makeText(this,
-                getString(R.string.unable_to_fetch_drawings),
-                Toast.LENGTH_SHORT).show()
+            UIUtils.showToast(this@AllDrawingsActivity, R.string.unable_to_fetch_drawings)
         }
     }
 
